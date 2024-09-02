@@ -9,14 +9,14 @@
 }
 
 .login-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0 1.25rem 1.25rem;
 
     background-color: #fffc;
     border-radius: 14px;
     box-shadow: 1px 1px 50px 5px #0006;
-    padding: 0 1.25rem 1.25rem;
 }
 
 .image-container {
@@ -28,6 +28,7 @@
     background-color: white;
     border: 1px solid #0008;
     border-radius: 100%;
+
     height: 5rem;
     width: 5rem;
     transform: translateY(-50%);
@@ -47,24 +48,24 @@ input {
     // border-radius: 24px;
     font-size: 1.25rem;
     font-weight: 500;
-    padding: 0.3rem 0.6rem;
-    outline: none;
-    margin-bottom: 1.25rem;
-    box-shadow: none;
     outline: 1px solid transparent;
     outline-offset: -1px;
+    box-shadow: none;
+    
+    padding: 0.3rem 0.6rem;
+    margin-bottom: 1.25rem;
 
     transition-duration: .4s;
 }
 
 .submit {
     background-color: $primary-color;
-    color: white;
     border: none;
     border-radius: 14px;
     box-shadow: 1px 1px 20px 4px #fff1;
-    padding: 0.3rem;
+    color: white;
     font-size: 1.25rem;
+    padding: 0.3rem;
 }
 
 .logo-container {
@@ -73,15 +74,17 @@ input {
 }
 
 .logo {
-    display: block;
+    background-color: #d5f5e3;
+    border: 1px solid #0b321b;
+    border-radius: 14px;
+    color: #0b321b;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 1.75rem;
-    background-color: #d5f5e3;
-    border: 1px solid #0b321b;
+
+    display: block;
     padding: 0.55rem;
-    border-radius: 14px;
-    color: #0b321b;
+    
     transform: translateY(-1.75rem);
     transition: 0.3s;
 }
@@ -98,7 +101,7 @@ input {
 .credit {
     position: absolute;
     bottom: 0.75rem;
+    color: #fffc;
     font-size: 1.25rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #0b321b;
 }
