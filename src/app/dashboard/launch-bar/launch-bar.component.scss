@@ -1,0 +1,92 @@
+@import '../../../styles.scss';
+
+.launch-bar {
+    background-color: $primary-color;
+    border-radius: 14px;
+
+    display: flex;
+    flex-direction: row;
+    min-height: 5rem;
+    width: max-content;
+    align-items: center;
+    margin: auto;
+    padding: 0.1rem 0.2rem;
+}
+
+.launcher-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    align-items: center;
+}
+
+.item-container {
+    width: 4.25rem;
+    height: 4.25rem;
+    // outline: 2px solid blue;
+    border-radius: 14px;
+    margin: 0.4rem;
+    padding: 0.4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition-duration: 0.4s;
+}
+
+.item-container:hover {
+    transform: scale(1.1);
+    background-color: $primary-darker-color;
+
+    > .item-title {
+        transform: scale(1.1);
+    }
+}
+
+.item-container.active {
+    background-color: $primary-lighter-color;
+}
+
+.item-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    // outline: 2px solid red;
+    border-radius: 8px;
+    background-color: $primary-background-color;
+}
+
+.item-title {
+    font-size: 0.8rem;
+    color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+
+    transition-duration: 0.4s;
+}
+
+.item-indicator {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    background-color: grey;
+    border-radius: 100%;
+    margin: 0.07rem;
+}
+
+.active .dot:first-child {
+    background-color: $primary-background-color;
+}
+
+// dibider
+.divider {
+    height: 4rem;
+    width: 2px;
+    border-radius: 100%;
+    background-color: $primary-background-color;
+}

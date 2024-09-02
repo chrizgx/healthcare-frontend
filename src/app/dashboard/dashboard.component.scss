@@ -1,7 +1,7 @@
 @import '../../styles.scss';
 
 :host {
-    background-color: $primary-background-color;
+    background-color: $primary-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,6 +10,7 @@
 
 :host > * {
     outline: 1px solid $primary-color;
+    background-color: $primary-background-color;
 }
 
 :host > :first-child {
@@ -31,7 +32,7 @@
 }
 
 .layout-container > * {
-    outline: 1px solid red;
+    // outline: 1px solid red;
 }
 
 .layout-container > :first-child {
@@ -40,6 +41,7 @@
 
 @media (max-width: $mobile-breakpoint) {
     .layout-container {
+        border-radius: 0;
         min-width: 100%;
         margin: 0;
         padding: 0;
