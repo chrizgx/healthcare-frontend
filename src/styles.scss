@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+}
+
+body, app-root {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+app-root > :nth-child(2) {
+    flex-grow: 1;
+}
