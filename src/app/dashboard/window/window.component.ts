@@ -1,12 +1,12 @@
-import { Component, inject, ViewChild, ViewContainerRef } from '@angular/core';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { NgIf, NgFor, AsyncPipe, NgComponentOutlet } from '@angular/common';
 import { WindowManagerService } from '../../services/window-manager.service';
 
 
 @Component({
   selector: 'app-window',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe],
+  imports: [NgIf, NgFor, AsyncPipe, NgComponentOutlet],
   templateUrl: './window.component.html',
   styleUrl: './window.component.scss'
 })
