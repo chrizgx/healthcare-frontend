@@ -66,6 +66,7 @@ export class WindowManagerService {
   // constructor() { }
   setActiveInstance(instanceId: string): void {
     this.activeInstanceId.next(instanceId);
+    this.makeIndex();
   }
 
   //2
