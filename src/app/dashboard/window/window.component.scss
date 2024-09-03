@@ -1,0 +1,7 @@
+.window-content {
+    flex-grow: 1;
+}
+
+.window-content[hidden] {
+    display: none;
+}

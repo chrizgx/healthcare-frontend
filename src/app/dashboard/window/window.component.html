@@ -1,1 +1,9 @@
-<p>window works!</p>
+<ng-container *ngIf="(windowManager.activeInstance$ | async) as activeInstance">
+    <ng-container *ngFor="let instance of instances">
+        <div [hidden]="instance.id !== activeInstance">
+            <div class="window-content">
+                <ng-container *ngComponentOutlet="instance.component"></ng-container>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
