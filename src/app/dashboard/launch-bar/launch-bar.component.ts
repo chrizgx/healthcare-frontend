@@ -1,4 +1,5 @@
 import { inject, Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 
 // Import components to include in window generation methods
 import { ChatComponent } from '../../components/chat/chat.component';
@@ -9,12 +10,12 @@ import { WindowManagerService } from '../../services/window-manager.service';
 @Component({
   selector: 'app-launch-bar',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './launch-bar.component.html',
   styleUrl: './launch-bar.component.scss'
 })
 export class LaunchBarComponent {
-  private windowManager: WindowManagerService = inject(WindowManagerService);
+  protected windowManager: WindowManagerService = inject(WindowManagerService);
 
   components = [
     {

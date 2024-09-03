@@ -5,7 +5,11 @@
                 <div class="item-icon"></div>
                 <div class="item-title">{{ component.title }}</div>
                 <div class="item-indicator">
-
+                    @if (windowManager.index[component.id]) {
+                        @for (i of windowManager.index[component.id].ids; track $index) {
+                            <div class="dot" [class.active]="i == (windowManager.activeInstance$ | async)"></div>
+                        }
+                    }
                 </div>
             </div>
         }

@@ -80,8 +80,8 @@
     margin: 0.07rem;
 }
 
-.active .dot:first-child {
-    background-color: $primary-background-color;
+.dot.active {
+    background-color: $primary-background-color !important;
 }
 
 // dibider
