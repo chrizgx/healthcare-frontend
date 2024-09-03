@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 interface ComponentInstance {
   id: string;
   component: any;
+  componentId: number,
   title: string;
 }
 
@@ -26,12 +27,13 @@ export class WindowManagerService {
   }
 
   //2
-  addInstance(componentType: any, title: string): string {
+  addInstance(componentType: any, title: string, cid: number): string {
     const newId = this.generateInstanceId();
 
     const newInstance: ComponentInstance = {
       id: newId,
       component: componentType,
+      componentId: cid,
       title: title
     };
 

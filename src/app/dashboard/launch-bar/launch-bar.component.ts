@@ -43,7 +43,7 @@ export class LaunchBarComponent {
   launchComponent(id: number) {
     const component = this.components.find(c => c.id === id);
     if (component) {
-      this.windowManager.addInstance(component.component, component.title);
+      this.windowManager.addInstance(component.component, component.title, component.id);
     }
   }
 
