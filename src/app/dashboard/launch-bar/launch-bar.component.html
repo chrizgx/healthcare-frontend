@@ -1,7 +1,7 @@
 <div class="launch-bar">
     <div class="launcher-container">
         @for (component of components; track component.id) {
-            <div class="item-container" (click)="launchComponent(component.id)">
+            <div class="item-container" [class.active]="windowManager.index[component.id].active" (click)="launchComponent(component.id)">
                 <div class="item-icon"></div>
                 <div class="item-title">{{ component.title }}</div>
                 <div class="item-indicator">
