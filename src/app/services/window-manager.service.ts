@@ -30,6 +30,7 @@ export class WindowManagerService {
   }
 
   public index: Index = {};
+  public history: string[] = [];
 
   // Should run after every method that affects instances.
   public makeIndex(): void {
@@ -62,10 +63,15 @@ export class WindowManagerService {
     this.index = newIndex;
     console.log(this.index);
   }
+
+  public trackHistory(instanceId: string): void {
+    this.history.unshift(instanceId);
+  }
   // 1
   // constructor() { }
   setActiveInstance(instanceId: string): void {
     this.activeInstanceId.next(instanceId);
+    this.trackHistory(instanceId);
     this.makeIndex();
   }
 
