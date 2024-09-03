@@ -44,6 +44,7 @@
 @media (max-width: $mobile-breakpoint) {
     .layout-container {
         border-radius: 0;
+        box-shadow: none;
         min-width: 100%;
         margin: 0;
         padding: 0;
