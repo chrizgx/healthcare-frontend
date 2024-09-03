@@ -1,31 +1,23 @@
 <div class="launch-bar">
     <div class="launcher-container">
-        <div class="item-container active">
-            <div class="item-icon"></div>
-            <div class="item-title">Title</div>
-            <div class="item-indicator">
-                <!-- For each instance, generate a dot -->
-                <div class="dot"></div>
-                <div class="dot"></div>
+        @for (component of components; track component.id) {
+            <div class="item-container" (click)="launchComponent(component.id)">
+                <div class="item-icon"></div>
+                <div class="item-title">{{ component.title }}</div>
+                <div class="item-indicator">
+
+                </div>
             </div>
-        </div>
-        <div class="item-container">
-            <div class="item-icon"></div>
-            <div class="item-title">Title</div>
-            <div class="item-indicator"></div>
-        </div>
-        <div class="item-container">
+        }
+        
+        <!-- <div class="item-container active">
             <div class="item-icon"></div>
             <div class="item-title">Title</div>
             <div class="item-indicator">
                 <div class="dot"></div>
+                <div class="dot"></div>
             </div>
-        </div>
-        <div class="item-container">
-            <div class="item-icon"></div>
-            <div class="item-title">Title</div>
-            <div class="item-indicator"></div>
-        </div>
+        </div> -->
     </div>
     <!-- <div class="divider"></div> -->
     <div class="tools-container">
