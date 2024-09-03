@@ -1,0 +1,90 @@
+@import '../../../styles.scss';
+
+// TODO: Implement mechanism to reduce title when exceeds length
+
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: hidden !important;
+}
+
+// Tab-outer serves the purpose of adding the padding effect as a parent element
+// But at the same time allowing the padding at the bottom become one when the
+// tab is active. If I did not implement it, when the tab was active it would 
+// either have a white space between the tab and the content, or there would be
+// no padding at the bottom of the tab.
+.tab-outer {
+    padding-bottom: 0.2rem;
+    margin: 0.2rem 0.15rem 0;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    transition-duration: 0.1s;
+}
+
+.tab-container {
+    // Positioning
+    display: flex;
+    flex-direction: row;
+
+    // Styling
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    min-width: 14rem;
+    padding: 0.3rem;
+    transition-duration: 0.1s;
+}
+
+// Dashboard tab is always present, there is no need for a title
+.dashboard-tab {
+    min-width: max-content;
+}
+
+.tab-container:hover {
+    background-color: #0002;
+}
+
+.active {
+    background-color: $primary-color !important;
+    border-color: transparent;
+    color: white;
+    // align-self: end;
+}
+
+.icon {
+    align-self: center;
+    background-color: grey;
+    border-radius: 100%;
+    margin: 0.2rem;
+    height: 1rem;
+    width: 1rem;
+}
+
+.title {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    flex-grow: 1;
+}
+
+.close {
+    align-self: center;
+    margin-left: 0.4rem;
+    margin-right: 0rem;
+    padding: 0 0.4rem 0rem;
+
+    border-radius: 0.4rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+
+    transition-duration: 0.1s;
+}
+
+.close span {
+    display: block;
+    transform: translate(0px, -2px);
+    cursor: pointer;
+}
+
+.close:hover {
+    background-color: grey;
+    color: white;
+}
