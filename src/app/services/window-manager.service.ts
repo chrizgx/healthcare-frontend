@@ -65,6 +65,8 @@ export class WindowManagerService {
   }
 
   public trackHistory(instanceId: string): void {
+    if (this.history[0] === instanceId) return;
+    if (this.history.length > 10) this.history.pop();
     this.history.unshift(instanceId);
   }
   // 1
