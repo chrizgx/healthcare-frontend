@@ -65,7 +65,7 @@ export class WindowManagerService {
   }
 
   public trackHistory(instanceId: string): void {
-    if (this.history[0] === instanceId) return;
+    // if (this.history[0] === instanceId) return;
     if (this.history.length > 10) this.history.pop();
     this.history.unshift(instanceId);
   }
@@ -99,6 +99,43 @@ export class WindowManagerService {
   }
 
   // 3
+  async removeInstance(instanceId: string): Promise<void> {
+    // FUTURE: Make it wait until the instance marked for remove becomes selected
+    await new Promise(resolve  => {
+      const intervalId = setInterval(() => {
+        if (this.activeInstanceId.value === instanceId) {
+          clearInterval(intervalId);
+          resolve(0);
+        }
+      }, 10)
+    });
+
+    const instanceIndex = this.instances.findIndex(instance => instance.id === instanceId);
+    this.instances.splice(instanceIndex, 1);
+    
+    let newActiveInstanceIndex: number = 0;
+
+    if (this.history.length >= 2 && this.history[1] !== instanceId) {
+      newActiveInstanceIndex = this.instances.findIndex(instance => instance.id === this.history[1])
+    } else if (this.instances.length > 1) {
+      newActiveInstanceIndex = this.instances.length - 1;
+    } else if (this.instances.length == 0) {
+      newActiveInstanceIndex = 0;
+    } else if (this.instances.length == 1) {
+      newActiveInstanceIndex = 1;
+    }
+
+    
+    this.makeIndex();
+
+    if (this.instances.length > 0) {
+      this.setActiveInstance(this.instances[newActiveInstanceIndex].id);
+    } else {
+      this.setActiveInstance('dashboard');
+    }
+
+  }
+
   private generateInstanceId(): string {
     return 'instance-' + Math.random().toString(36).substring(2, 15);
   }

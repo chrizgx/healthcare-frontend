@@ -10,7 +10,7 @@
             <div class="tab-container" (click)="windowManager.setActiveInstance(instance.id)" >
                 <div class="icon"></div>
                 <span class="title">{{ instance.title }}</span>
-                <div class="close"><span>x</span></div>
+                <div class="close" (click)="windowManager.removeInstance(instance.id)"><span>x</span></div>
             </div>
         </div>
     }
