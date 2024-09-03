@@ -44,7 +44,8 @@
     background-color: #0002;
 }
 
-.active {
+.active,
+.active .tab-container {
     background-color: $primary-color !important;
     border-color: transparent;
     color: white;
