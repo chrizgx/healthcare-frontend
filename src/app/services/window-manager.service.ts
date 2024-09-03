@@ -8,6 +8,12 @@ interface ComponentInstance {
   title: string;
 }
 
+interface Index {
+  [key: string]: {
+    ids: string[];
+  };
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +22,38 @@ export class WindowManagerService {
 
   public instances: ComponentInstance[] = [];
   private activeInstanceId = new BehaviorSubject<string | null>(null);
+
   public get activeInstance$() {
     return this.activeInstanceId.asObservable();
   }
 
+  public index: Index = {
+    
+  };
+
+  // Should run after every method that affects instances.
+  public makeIndex(): void {
+    let newIndex: any = {};
+
+    this.instances.forEach(instance => {
+      if (newIndex[instance.componentId]) {
+        newIndex[instance.componentId.toString()].ids.push([instance.id]);
+      } else {
+        newIndex[instance.componentId.toString()] = {
+          ids: [instance.id]
+        }
+      }
+
+      // if (instance.id === this.activeInstanceId.value) {
+      //   newStats[instance.componentId].active = true;
+      // } else {
+      //   newStats[instance.componentId].active = false;
+      // }
+    });
+
+    this.index = newIndex;
+    console.log(this.index);
+  }
   // 1
   // constructor() { }
   setActiveInstance(instanceId: string): void {
@@ -41,6 +75,8 @@ export class WindowManagerService {
     this.setActiveInstance(newId);
 
     console.log(this.instances);
+
+    this.makeIndex();
 
     return newId;
   }
