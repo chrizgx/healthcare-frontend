@@ -46,10 +46,26 @@
 
 .active,
 .active .tab-container {
-    background-color: $primary-color !important;
-    border-color: transparent;
+    // background-color: $secondary-color !important;
+    // border-color: transparent;
     color: white;
     // align-self: end;
+}
+
+.active {
+    // background: rgb(113,46,204);
+    background-color: $secondary-color;
+    background: linear-gradient(180deg, rgba(46,204,113,1) 0%, rgba(113,46,204,1) 100%); 
+}
+
+.active .tab-container {
+    border-color: transparent;
+}
+
+@media (max-width: $mobile-breakpoint) {
+    .active {
+        // background: linear-gradient(180deg, rgba(113,46,204,1) 65%, rgba(255,255,255,1) 100%);
+    }
 }
 
 .icon {
@@ -59,6 +75,10 @@
     margin: 0.2rem;
     height: 1rem;
     width: 1rem;
+}
+
+.active .icon {
+    background-color: $primary-background-color;
 }
 
 .title {
