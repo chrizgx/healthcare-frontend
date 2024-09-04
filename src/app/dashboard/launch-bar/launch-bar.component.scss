@@ -69,19 +69,23 @@
 .item-indicator {
     display: flex;
     flex-direction: row;
+    align-items: center;
 
 }
 
 .dot {
     width: 0.4rem;
     height: 0.4rem;
-    background-color: grey;
+    background-color: #fff6;
     border-radius: 100%;
     margin: 0.07rem;
+    transition-duration: 0.1s;
 }
 
 .dot.active {
-    background-color: $primary-background-color !important;
+    background-color: $secondary-color ;
+    transform: scale(1.05);
+    margin: 0.05rem 0.07rem;
 }
 
 // dibider
