@@ -22,6 +22,12 @@
     transition-duration: 0.1s;
 }
 
+@media (max-width: $mobile-breakpoint) {
+    .tab-outer {
+        border-radius: 0.3rem;
+    }
+}
+
 .tab-container {
     // Positioning
     display: flex;
