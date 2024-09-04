@@ -1,7 +1,7 @@
 @import '../../../styles.scss';
 
 .launch-bar {
-    background-color: $primary-color;
+    background-color: $secondary-color;
     border-radius: 14px;
 
     display: flex;
@@ -12,6 +12,16 @@
     margin: auto;
     padding: 0.1rem 0.2rem;
     box-shadow: 0 0 15px 1px #0005;
+    transition: 0.2s;
+    // transform: translateY(1rem);
+}
+
+.launch-bar:hover {
+    transform: scale(1.1);
+
+    .item-title {
+        transform: scale(1.2);
+    }
 }
 
 .launcher-container {
@@ -38,15 +48,20 @@
 
 .item-container:hover {
     transform: scale(1.1);
-    background-color: $primary-darker-color;
+    // background-color: $secondary-darker-color;
+    background-color: #0003;
 
     > .item-title {
-        transform: scale(1.1);
+        transform: scale(1.5);
     }
 }
 
 .item-container.active {
-    background-color: $primary-lighter-color;
+    background-color: $secondary-lighter-color;
+
+    .item-title {
+        transform: scale(1.2);
+    }
 }
 
 .item-icon {
@@ -58,12 +73,13 @@
 }
 
 .item-title {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: white;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 500;
 
     transition-duration: 0.1s;
+    transform: scale(0);
 }
 
 .item-indicator {
@@ -83,7 +99,7 @@
 }
 
 .dot.active {
-    background-color: $secondary-color ;
+    background-color: $primary-color ;
     transform: scale(1.05);
     margin: 0.05rem 0.07rem;
 }
@@ -94,4 +110,19 @@
     width: 2px;
     border-radius: 100%;
     background-color: $primary-background-color;
+}
+
+@media (max-width: $mobile-breakpoint) {
+    .item-title {
+        transform: none;
+        font-size: 0.8rem;
+    }
+
+    .launch-bar:hover {
+        transform: none;
+
+        .item-title {
+            transform: none;
+        }
+    }
 }

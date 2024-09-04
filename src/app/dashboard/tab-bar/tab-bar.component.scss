@@ -55,17 +55,11 @@
 .active {
     // background: rgb(113,46,204);
     background-color: $secondary-color;
-    background: linear-gradient(180deg, rgba(46,204,113,1) 0%, rgba(113,46,204,1) 100%); 
+    background: linear-gradient(180deg, rgba(113, 46,204,1) 0%, rgba(46,204, 113,1) 100%); 
 }
 
 .active .tab-container {
     border-color: transparent;
-}
-
-@media (max-width: $mobile-breakpoint) {
-    .active {
-        // background: linear-gradient(180deg, rgba(113,46,204,1) 65%, rgba(255,255,255,1) 100%);
-    }
 }
 
 .icon {
@@ -109,4 +103,16 @@
 .close:hover {
     background-color: grey;
     color: white;
+}
+
+
+@media (max-width: $mobile-breakpoint) {
+    .active {
+        // background: linear-gradient(180deg, rgba(113,46,204,1) 65%, rgba(255,255,255,1) 100%);
+        background: $secondary-color;
+    }
+
+    .active .icon {
+        background-color: $primary-color;
+    }
 }
