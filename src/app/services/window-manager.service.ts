@@ -31,6 +31,8 @@ export class WindowManagerService {
 
   public index: Index = {};
   public history: string[] = [];
+  
+  private deleteActivated: boolean = false;
 
   // Should run after every method that affects instances.
   public makeIndex(): void {
@@ -71,10 +73,34 @@ export class WindowManagerService {
   }
   // 1
   // constructor() { }
-  setActiveInstance(instanceId: string): void {
+  private setActiveInstance(instanceId: string): void {
     this.activeInstanceId.next(instanceId);
     this.trackHistory(instanceId);
     this.makeIndex();
+  }
+
+  // Since when the tab-bar close button is clicked, the switchActiveInstance method is called too,
+  // the deleteActivated flag is used to prevent the setActiveInstance method from being called
+  // if the action intended is to delete the instance clicked, and not activate it.
+  async switchActiveInstance(instanceId: string): Promise<void> {
+    let repeat = 0;
+    const cancelSwitch = await new Promise(resolve  => {
+      const intervalId = setInterval(() => {
+        if (this.deleteActivated) {
+          clearInterval(intervalId);
+          resolve(true);
+        } else if (repeat > 2 * this.instances.length) {
+          clearInterval(intervalId);
+          resolve(false);
+        }
+        repeat++;
+      }, 10);
+    });
+
+    if (cancelSwitch) return;
+    if (this.instances.find(i => i.id == instanceId)) {
+      this.setActiveInstance(instanceId);
+    }
   }
 
   //2
@@ -100,32 +126,21 @@ export class WindowManagerService {
 
   // 3
   async removeInstance(instanceId: string): Promise<void> {
-    // FUTURE: Make it wait until the instance marked for remove becomes selected
-    await new Promise(resolve  => {
-      const intervalId = setInterval(() => {
-        if (this.activeInstanceId.value === instanceId) {
-          clearInterval(intervalId);
-          resolve(0);
-        }
-      }, 10)
-    });
+    this.deleteActivated = true;
 
     const instanceIndex = this.instances.findIndex(instance => instance.id === instanceId);
     this.instances.splice(instanceIndex, 1);
     
     let newActiveInstanceIndex: number = 0;
 
-    if (this.history.length >= 2 && this.history[1] !== instanceId) {
-      newActiveInstanceIndex = this.instances.findIndex(instance => instance.id === this.history[1])
+    if (this.history.length >= 1 && this.history[0] !== instanceId) {
+      newActiveInstanceIndex = this.instances.findIndex(instance => instance.id === this.history[0])
     } else if (this.instances.length > 1) {
       newActiveInstanceIndex = this.instances.length - 1;
-    } else if (this.instances.length == 0) {
-      newActiveInstanceIndex = 0;
-    } else if (this.instances.length == 1) {
+    } else if (this.instances.length == 2) {
       newActiveInstanceIndex = 1;
     }
 
-    
     this.makeIndex();
 
     if (this.instances.length > 0) {
@@ -133,6 +148,9 @@ export class WindowManagerService {
     } else {
       this.setActiveInstance('dashboard');
     }
+
+    this.makeIndex();
+    this.deleteActivated = false;
 
   }
 

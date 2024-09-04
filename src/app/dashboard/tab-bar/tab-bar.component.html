@@ -7,7 +7,7 @@
     </div>
     @for (instance of windowManager.instances; track instance.id) {
         <div class="tab-outer" [class.active]="instance.id == (windowManager.activeInstance$ | async)">
-            <div class="tab-container" (click)="windowManager.setActiveInstance(instance.id)" >
+            <div class="tab-container" (click)="windowManager.switchActiveInstance(instance.id)" >
                 <div class="icon"></div>
                 <span class="title">{{ instance.title }}</span>
                 <div class="close" (click)="windowManager.removeInstance(instance.id)"><span>x</span></div>
