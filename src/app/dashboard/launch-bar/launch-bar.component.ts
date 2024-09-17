@@ -52,17 +52,20 @@ export class LaunchBarComponent {
   }
 
   // TODO: Show message based on condition
-  // TODO: On 1-instance-only components, switch to the component existing instance directly.
   launchCheck(id: number): boolean {
-    let idCounter: number = 0;
+    const maxInstances = this.components[id-1].maxInstances;
+    let idCounter: string[] = [];
     let counter: number = 0;
 
     for (const instance of this.windowManager.instances) {
-      if (instance.componentId == id) idCounter++;
+      if (instance.componentId == id) idCounter.push(instance.id);
       counter++;
     }
 
-    return (counter < 12 && idCounter < this.components[id-1].maxInstances);
+    // For 1-instance-only components, switch to component's window
+    if (maxInstances == 1 && idCounter.length == 1 ) this.windowManager.switchActiveInstance(idCounter[0]);
+
+    return (counter < 12 && idCounter.length < maxInstances);
   }
 
 }
