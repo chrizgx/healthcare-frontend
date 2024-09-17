@@ -41,9 +41,22 @@
     transition-duration: 0.1s;
 }
 
-// Dashboard tab is always present, there is no need for a title
+// Dashboard tab is always present, there is no need for a title unless active
 .dashboard-tab {
     min-width: max-content;
+}
+
+.active .dashboard-tab {
+    min-width: 12rem;
+}
+
+.dashboard-tab .title {
+    display: none;
+}
+
+.active .dashboard-tab .title {
+    display: block;
+    margin-right: 10px;
 }
 
 .tab-container:hover {

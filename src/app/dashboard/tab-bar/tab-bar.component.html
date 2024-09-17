@@ -1,24 +1,21 @@
 <ng-container>
-    <div class="tab-outer">
-        <div class="tab-container dashboard-tab">
-            <div class="icon"></div>
-            <!-- <div class="title">Dashboard</div> -->
-        </div>
-    </div>
     @for (instance of windowManager.instances; track instance.id) {
-        <div class="tab-outer" [class.active]="instance.id == (windowManager.activeInstance$ | async)">
-            <div class="tab-container" (click)="windowManager.switchActiveInstance(instance.id)" >
-                <div class="icon"></div>
-                <span class="title">{{ instance.title }}</span>
-                <div class="close" (click)="windowManager.removeInstance(instance.id)"><span>x</span></div>
+        @if (instance.componentId == 0) {
+            <div class="tab-outer" [class.active]="instance.id == (windowManager.activeInstance$ | async)">
+                <div class="tab-container dashboard-tab" (click)="windowManager.switchActiveInstance(instance.id)">
+                    <div class="icon"></div>
+                    <div class="title">Dashboard</div>
+                </div>
             </div>
-        </div>
+        } @else {
+            <div class="tab-outer" [class.active]="instance.id == (windowManager.activeInstance$ | async)">
+                <div class="tab-container" (click)="windowManager.switchActiveInstance(instance.id)" >
+                    <div class="icon"></div>
+                    <span class="title">{{ instance.title }}</span>
+                    <div class="close" (click)="windowManager.removeInstance(instance.id)"><span>x</span></div>
+                </div>
+            </div>
+
+        }
     }
-    <!-- <div class="tab-outer active">
-        <div class="tab-container active">
-            <div class="icon"></div>
-            <span class="title">Component Title</span>
-            <div class="close"><span>x</span></div>
-        </div>
-    </div> -->
 </ng-container>

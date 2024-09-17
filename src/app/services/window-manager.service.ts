@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { IndexComponent } from '../components/index/index.component';
 
 interface ComponentInstance {
   id: string;
@@ -160,5 +161,7 @@ export class WindowManagerService {
 
   constructor() {
     this.makeIndex();
+    // Create index page that is always present and unable to deactivate. The 'x' button is disabled on this type of element.
+    this.addInstance(IndexComponent, 'Dashboard', 0);
   }
 }
