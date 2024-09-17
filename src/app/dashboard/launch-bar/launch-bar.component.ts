@@ -24,6 +24,7 @@ export class LaunchBarComponent {
       title: 'Patients',
       icon: 'person',
       roles: null,
+      maxInstances: 5,
     },
     {
       component: DepartmentComponent,
@@ -31,6 +32,7 @@ export class LaunchBarComponent {
       title: 'Department',
       icon: 'building',
       roles: null,
+      maxInstances: 1,
     },
     {
       component: ChatComponent,
@@ -38,14 +40,29 @@ export class LaunchBarComponent {
       title: 'Chat',
       icon: 'chat',
       roles: null,
+      maxInstances: 1,
     }
   ]
 
   launchComponent(id: number) {
     const component = this.components.find(c => c.id === id);
-    if (component) {
+    if (component && this.launchCheck(id)) {
       this.windowManager.addInstance(component.component, component.title, component.id);
     }
+  }
+
+  // TODO: Show message based on condition
+  // TODO: On 1-instance-only components, switch to the component existing instance directly.
+  launchCheck(id: number): boolean {
+    let idCounter: number = 0;
+    let counter: number = 0;
+
+    for (const instance of this.windowManager.instances) {
+      if (instance.componentId == id) idCounter++;
+      counter++;
+    }
+
+    return (counter < 12 && idCounter < this.components[id-1].maxInstances);
   }
 
 }
